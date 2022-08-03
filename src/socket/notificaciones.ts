@@ -5,4 +5,9 @@ export function notificaciones(io: Server, socket: Socket) {
 		console.log('notification:horarios', message);
 		io.sockets.emit('notification:horarios', message);
 	});
+
+	socket.on('notification:reserva', message => {
+		console.log('notification:reserva', message);
+		io.sockets.emit('notification:reserva', message);
+	});
 }
