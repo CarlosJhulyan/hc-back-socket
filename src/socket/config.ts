@@ -1,6 +1,6 @@
 import { Server } from 'socket.io';
 import { notificaciones } from './notificaciones';
-import { reservaTeporal } from './reservaTemporal';
+import { eliminarReservasVencidas, enviarDatainicio, reservaTeporal } from './reservaTemporal';
 
 export function initialSocket(app) {
 	const server = app.getHttpServer();
@@ -10,6 +10,14 @@ export function initialSocket(app) {
 			methods: ['GET', 'POST'],
 		},
 	});
+
+	setInterval(() => {
+		eliminarReservasVencidas(io);
+	}, 5000);
+
+	setTimeout(() => {
+		enviarDatainicio(io);
+	}, 2000);
 
 	io.on('connection', socket => {
 		console.log('Conexión', socket.id, 'desde:', socket.handshake.headers.origin);
