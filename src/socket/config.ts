@@ -1,5 +1,6 @@
 import { Server } from 'socket.io';
 import { notificaciones } from './notificaciones';
+import { reserva } from './reserva';
 import { eliminarReservasVencidas, enviarDatainicio, reservaTeporal } from './reservaTemporal';
 
 export function initialSocket(app) {
@@ -23,5 +24,6 @@ export function initialSocket(app) {
 		console.log('Conexión', socket.id, 'desde:', socket.handshake.headers.origin);
 		notificaciones(io, socket);
 		reservaTeporal(io, socket);
+		reserva(io, socket);
 	});
 }
