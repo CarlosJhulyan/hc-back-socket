@@ -1,4 +1,6 @@
 import { Server } from 'socket.io';
+import { alertDoctorKardex } from './alertDoctorKardex';
+import { alertConsultaProcedimiento } from './alertConsultaProcedimiento';
 import { notificaciones } from './notificaciones';
 import { reserva } from './reserva';
 import { eliminarReservasVencidas, enviarDatainicio, reservaTeporal } from './reservaTemporal';
@@ -25,5 +27,7 @@ export function initialSocket(app) {
 		notificaciones(io, socket);
 		reservaTeporal(io, socket);
 		reserva(io, socket);
+		alertDoctorKardex(io, socket);
+		alertConsultaProcedimiento(io, socket);
 	});
 }
