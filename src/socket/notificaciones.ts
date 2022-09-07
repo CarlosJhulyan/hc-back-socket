@@ -10,4 +10,9 @@ export function notificaciones(io: Server, socket: Socket) {
 		console.log('notification:reserva', message);
 		io.sockets.emit('notification:reserva', message);
 	});
+
+	socket.on('notification:admin', message => {
+		console.log('notification:admin', message);
+		io.sockets.emit('notification:admin', message);
+	});
 }
